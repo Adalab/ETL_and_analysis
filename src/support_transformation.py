@@ -212,19 +212,19 @@ def exploracion_nulos (dataframe):
     print(dataframe[nulos_cat].isnull().sum() / dataframe.shape[0])
     print("........................")
 
-    # % de nulos por categoria de cada columna
+    
     for col in nulos_cat:
         print(f"La distribución de las categorías para la columna {col.upper()}")
         display(dataframe[col].value_counts() / dataframe.shape[0])
         print("........................")
 
-    # sacamos una lista de las variables numericas que tienen nulos
+    
     nulos_num = dataframe[dataframe.columns[dataframe.isnull().any()]].select_dtypes(include = np.number).columns
     print("Las columnas numéricas que tienen nulos son : \n ")
     print(nulos_num)
     print("........................")
 
-    # nulos que tenemos en cada una de las columnas numericas
+    
     print("El porcentaje de nulos de cada una de las anteriores es: \n")
     print(dataframe[nulos_num].isnull().sum() / dataframe.shape[0])
 
@@ -259,10 +259,7 @@ def exploracion_ceros (dataframe):
     Returns:
     La funcion devuelve varios prints con la informacion obtenida"""
 
-# lista_col_obj = []
-# for col in df_total_notnull:
-#         if df_total_notnull[df_total_notnull[col] == 0][col].count()> 0:
-#             lista_col_obj.append(col)
+
     col_con_ceros = []
     for col in dataframe:
 
@@ -289,6 +286,7 @@ def eliminar_negativos (dataframe, columna):
     
     Returns:
     La funcion devuelve el DF modificado"""
+
     print(f"Estos son los datos negativos en {columna}")
     print(dataframe[dataframe[columna] < 0][columna])
     dataframe[columna] = dataframe[columna].apply(lambda dato : np.nan if dato < 0 else dato)
@@ -299,10 +297,16 @@ def eliminar_negativos (dataframe, columna):
         
 
 def col_fecha (dataframe, col1, col2, col_nueva):
-        # Unión de columnas: Extra y Descripción
+
+    """Esta función crea 1 nueva columna de año/mes
+    
+    Args:
+    dataframe : el dataframe que queremos modificar
+    col1 : año o mes, segun el orden que queramos
+    col2 : año o mes, segun el orden que queramos
+    col_nueva : nombre que le vamos a dar a la nueva columna
+    
+    Returns:
+    La funcion devuelve el DF modificado"""
+
     dataframe[col_nueva] = dataframe.apply(lambda dato: str(dato[col1]) + "/" + str(dato[col2]), axis=1)
-
-######### VISUALIZAICON ###########
-
-def barplot (dataframe, columnas):
-    return
