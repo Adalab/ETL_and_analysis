@@ -20,3 +20,14 @@ sp.graficos_hisp(df_loyalty_history, ["Gender", "Education", "Marital Status"])
 df_flight_activity_notdup = sp.eliminar_duplicados(df_flight_activity)
 # %%
 df_total = sp.union(df_flight_activity, df_loyalty_history)
+# %%
+sp.cabeceras(df_total)
+
+# %%
+df_total.columns
+# %%
+sp.exploracion_nulos(df_total)
+# %%
+lista = ["cancellation_year", "cancellation_month"]
+df_total_notnull = sp.gestion_nulos(df_total, lista)
+# %%

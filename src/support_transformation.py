@@ -1,4 +1,4 @@
-
+#%%
 # Importaciones
 # -----------------------------------------------------------------------
 import pandas as pd
@@ -173,3 +173,64 @@ def union (dataframe1, dataframe2):
 
     merged_df = pd.merge(dataframe1, dataframe2, on="Loyalty Number", how='left')
     return merged_df
+
+def cabeceras (dataframe):
+    dataframe.columns = [col.replace(" ", "_").lower() for col in dataframe.columns]
+
+def exploracion_nulos (dataframe):
+
+    """Esta función explora los nulos del DataFrame, nos mostrara segun
+    el tipo de columna (numerica o categorica) el % de nulos de cada una
+    
+    Args:
+    dataframe : el dataframe que queremos explorar
+    
+    Returns:
+    La funcion devuelve varios prints con la informacion obtenida"""
+    
+    nulos_cat = dataframe[dataframe.columns[dataframe.isnull().any()]].select_dtypes(include = "O").columns
+    print("Las columnas categóricas que tienen nulos son : \n ")
+    print(nulos_cat)
+    print("........................")
+
+    
+    print("El porcentaje de nulos de cada una de las anteriores es: \n")
+    print(dataframe[nulos_cat].isnull().sum() / dataframe.shape[0])
+    print("........................")
+
+    # % de nulos por categoria de cada columna
+    for col in nulos_cat:
+        print(f"La distribución de las categorías para la columna {col.upper()}")
+        display(dataframe[col].value_counts() / dataframe.shape[0])
+        print("........................")
+
+    # sacamos una lista de las variables numericas que tienen nulos
+    nulos_num = dataframe[dataframe.columns[dataframe.isnull().any()]].select_dtypes(include = np.number).columns
+    print("Las columnas numéricas que tienen nulos son : \n ")
+    print(nulos_num)
+    print("........................")
+
+    # nulos que tenemos en cada una de las columnas numericas
+    print("El porcentaje de nulos de cada una de las anteriores es: \n")
+    print(dataframe[nulos_num].isnull().sum() / dataframe.shape[0])
+
+def gestion_nulos (dataframe, lista_unknown):
+
+    """Esta función gestiona los nulos, en concreto para este Dataframe, 
+    las columnas Cancellation Year y Cancellation Month son falsas numericas, 
+    por lo que sustituiremos nulos por "Unknown" lo cual puede indicar o bien que
+    no tenemos el dato o bien que sigue siendo cliente y no ha cancelado.
+    
+    Args:
+    dataframe : el dataframe que queremos modificar
+    
+    Returns:
+    La funcion devuelve el DF modificado"""    
+
+    for columna in lista_unknown:
+        dataframe[columna] = dataframe[columna].fillna("Unknown")
+    print("Comprobacion de la ausencia de los nulos")
+    print(dataframe[lista_unknown].isnull().sum())
+    
+    return dataframe
+# %%
