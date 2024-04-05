@@ -138,3 +138,38 @@ def graficos_boxp (dataframe, lista_col):
         fig.tight_layout();
 
 
+def eliminar_duplicados (dataframe):
+    """Esta función elimina los duplicados generales de DataFrame y 
+    mantiene la primera aparicion de los mismos
+    
+    Args:
+    dataframe : DF al que queremos quitar duplicados
+    
+    Returns:
+    La funcion no tiene return pero gracias al "inplace = True" devuelve el DataFrame 
+    ya sin duplicados, ademas, devuelve varios prints de comprobacion"""
+        
+    print("Estos son los duplicados generales del DataFrame:")
+    print(dataframe.duplicated().sum())
+    dataframe.drop_duplicates(keep = "first", inplace = True)
+    print("Duplicados eliminados")
+    print("Comprobacion de la ausencia de duplicados")
+    print(dataframe.duplicated().sum())
+
+def union (dataframe1, dataframe2):
+
+    """Esta función realiza un merge entre dos DataFrame, es decir, en
+    el nuevo DF las columnas del segundo apareceran a la derecha de la del primero.
+    La forma de hacer el merge es "left": debemos poner como DF1 el que queramos como base
+    para buscar en el otro.
+    En este caso la columna de union es "Loyalty Number"
+    
+    Args:
+    dataframe1, dataframe2 : los dataframe que queremos unir
+    
+    Returns:
+    La funcion devuelve el DataFrame ya sin duplicados y 
+    varios prints de comprobacion"""
+
+    merged_df = pd.merge(dataframe1, dataframe2, on="Loyalty Number", how='left')
+    return merged_df

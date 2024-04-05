@@ -13,9 +13,10 @@ lista_dfs = [df_flight_activity, df_loyalty_history]
 # %%
 sp.exploracion_general(lista_dfs)
 sp.exploracion_columna(lista_dfs)
-
-
 # %%
 sp.graficos_boxp(df_flight_activity, ["Flights Booked", "Flights with Companions", "Total Flights"])
 sp.graficos_hisp(df_loyalty_history, ["Gender", "Education", "Marital Status"])
 # %%
+df_flight_activity_notdup = sp.eliminar_duplicados(df_flight_activity)
+# %%
+df_total = sp.union(df_flight_activity, df_loyalty_history)
