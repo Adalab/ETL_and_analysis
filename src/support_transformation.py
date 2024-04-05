@@ -155,6 +155,7 @@ def eliminar_duplicados (dataframe):
     print("Duplicados eliminados")
     print("Comprobacion de la ausencia de duplicados")
     print(dataframe.duplicated().sum())
+    print("--------------------------------------------")
 
 def union (dataframe1, dataframe2):
 
@@ -171,11 +172,24 @@ def union (dataframe1, dataframe2):
     La funcion devuelve el DataFrame ya sin duplicados y 
     varios prints de comprobacion"""
 
-    merged_df = pd.merge(dataframe1, dataframe2, on="Loyalty Number", how='left')
+    merged_df = pd.merge(dataframe1, dataframe2, on="loyalty_number", how='left')
     return merged_df
 
-def cabeceras (dataframe):
-    dataframe.columns = [col.replace(" ", "_").lower() for col in dataframe.columns]
+def cabeceras (lista):
+
+    """Esta función renombra las cabeceras del DataFrame, sustituye espacios por "_"
+    y las pone en minusculas.
+    
+    Args:
+    lista : lista de DFs que queremos modificar
+    
+    Returns:
+    La funcion no tiene return, modifica las cabeceras por asignacion directa"""
+    for dataframe in lista:
+        print("Modificamos DF {}".format(dataframe.name))
+        dataframe.columns = [col.replace(" ", "_").lower() for col in dataframe.columns]
+        print(f"Las nuevas cabeceras son: {dataframe.columns}")
+        print("--------------------------------------------")
 
 def exploracion_nulos (dataframe):
 
@@ -233,4 +247,62 @@ def gestion_nulos (dataframe, lista_unknown):
     print(dataframe[lista_unknown].isnull().sum())
     
     return dataframe
-# %%
+
+
+def exploracion_ceros (dataframe):
+    """Esta función explora los nulos del DataFrame, nos mostrara segun
+    el tipo de columna (numerica o categorica) el % de nulos de cada una
+    
+    Args:
+    dataframe : el dataframe que queremos explorar
+    
+    Returns:
+    La funcion devuelve varios prints con la informacion obtenida"""
+
+# lista_col_obj = []
+# for col in df_total_notnull:
+#         if df_total_notnull[df_total_notnull[col] == 0][col].count()> 0:
+#             lista_col_obj.append(col)
+    col_con_ceros = []
+    for col in dataframe:
+
+        if dataframe[dataframe[col] == 0][col].count()> 0:
+            col_con_ceros.append(col)
+
+    print("Las columnas que tienen ceros son : \n ")
+    print(col_con_ceros)
+    print("........................")
+
+    for colu in col_con_ceros:
+        print(f"El porcentaje de ceros de la columna {colu} \n")
+        print(dataframe[dataframe[colu] == 0][colu].count() / dataframe.shape[0])
+        print("........................")
+
+
+
+def eliminar_negativos (dataframe, columna):
+
+    """Esta función sustituye los numeros negativos por np.nan
+    
+    Args:
+    dataframe : el dataframe que queremos modificar
+    
+    Returns:
+    La funcion devuelve el DF modificado"""
+    print(f"Estos son los datos negativos en {columna}")
+    print(dataframe[dataframe[columna] < 0][columna])
+    dataframe[columna] = dataframe[columna].apply(lambda dato : np.nan if dato < 0 else dato)
+    print("Despues de establecer negativos como nulos")
+    print(f"Estos son los datos negativos en {columna}")
+    print("--------------------------------------------")
+
+        
+
+def col_fecha (dataframe, col1, col2, col_nueva):
+        # Unión de columnas: Extra y Descripción
+    dataframe[col_nueva] = dataframe.apply(lambda dato: str(dato[col1]) + "/" + str(dato[col2]), axis=1)
+
+######### VISUALIZAICON ###########
+
+def barplot (dataframe, columnas):
+    return
