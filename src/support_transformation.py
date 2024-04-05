@@ -84,9 +84,9 @@ def exploracion_columna (lista):
         print("------Exploracion del dataframe: {} ------".format(dataframe.name))
         for columna in list(dataframe.columns):
             print(f" \n----------- ESTAMOS ANALIZANDO LA COLUMNA: '{columna.upper()}' -----------\n")
-            print(f"* Frecuencia de valores en la columna: \n {dataframe[columna].value_counts()}")
-            print(f"La suma de datos nulos {dataframe[columna].isnull().sum()}")
-            print(f"La suma de datos duplicados {dataframe[columna].duplicated().sum()}")
+            print(f"Frecuencia de valores en la columna: \n {dataframe[columna].value_counts()}")
+            print(f"Suma de datos nulos {dataframe[columna].isnull().sum()}")
+            print(f"Suma de datos duplicados {dataframe[columna].duplicated().sum()}")
             
 def graficos_hisp (dataframe, lista_col):
 
@@ -100,16 +100,15 @@ def graficos_hisp (dataframe, lista_col):
     La funcion devuelve un grafico histplot por cada columna indicada
     en la lista"""
 
-    fig, axes = plt.subplots(len(lista_col), 1, figsize=(30,20))
+    fig, axes = plt.subplots(len(lista_col), 1, figsize=(10,5))
 
     axes = axes.flat
 
     for indice, columna in enumerate(lista_col):
 
-        sns.histplot(x = columna, data = dataframe, color = "purple", kde = True, bins = 15, ax=axes[indice])
+        sns.histplot(x = columna, data = dataframe, color = "purple", kde = True, bins = 20, ax=axes[indice])
         axes[indice].set_title(columna)
-        axes[indice].set_xlabel("Frecuencia")
-        plt.gca().spines[["top", "right"]].set_visible(False)
+        axes[indice].set_ylabel("Frecuencia")
 
         fig.tight_layout();
 
@@ -125,21 +124,20 @@ def graficos_boxp (dataframe, lista_col):
     La funcion devuelve un grafico boxplot por cada columna indicada
     en la lista"""
 
-    fig, axes = plt.subplots(len(lista_col), 1, figsize=(30,20))
+    fig, axes = plt.subplots(len(lista_col), 1, figsize=(10,5))
 
     axes = axes.flat
 
     for indice, columna in enumerate(lista_col):
 
-        sns.boxplot(y = columna, data = dataframe, color = "purple", ax=axes[indice])
-        axes[indice].set_title(columna)
-        axes[indice].set_ylabel(columna)
+        sns.boxplot(x = columna, data = dataframe, color = "purple", ax=axes[indice])
 
         fig.tight_layout();
 
+##FUNCIONES LIMPIEZA Y UNION##
 
 def eliminar_duplicados (dataframe):
-    """Esta función elimina los duplicados generales de DataFrame y 
+    """Esta función elimina los duplicados generales del DataFrame y 
     mantiene la primera aparicion de los mismos
     
     Args:
@@ -169,8 +167,7 @@ def union (dataframe1, dataframe2):
     dataframe1, dataframe2 : los dataframe que queremos unir
     
     Returns:
-    La funcion devuelve el DataFrame ya sin duplicados y 
-    varios prints de comprobacion"""
+    La funcion devuelve un nuevo DataFrame unificado"""
 
     merged_df = pd.merge(dataframe1, dataframe2, on="loyalty_number", how='left')
     return merged_df
@@ -185,6 +182,7 @@ def cabeceras (lista):
     
     Returns:
     La funcion no tiene return, modifica las cabeceras por asignacion directa"""
+
     for dataframe in lista:
         print("Modificamos DF {}".format(dataframe.name))
         dataframe.columns = [col.replace(" ", "_").lower() for col in dataframe.columns]
@@ -239,7 +237,7 @@ def gestion_nulos (dataframe, lista_unknown):
     dataframe : el dataframe que queremos modificar
     
     Returns:
-    La funcion devuelve el DF modificado"""    
+    La funcion no tiene return, devuelve el DF modificado por asignacion directa"""    
 
     for columna in lista_unknown:
         dataframe[columna] = dataframe[columna].fillna("Unknown")
@@ -250,8 +248,9 @@ def gestion_nulos (dataframe, lista_unknown):
 
 
 def exploracion_ceros (dataframe):
-    """Esta función explora los nulos del DataFrame, nos mostrara segun
-    el tipo de columna (numerica o categorica) el % de nulos de cada una
+
+    """Esta función explora los ceros del DataFrame, nos mostrara el % de ceros de 
+    las columnas numericas
     
     Args:
     dataframe : el dataframe que queremos explorar
@@ -285,7 +284,7 @@ def eliminar_negativos (dataframe, columna):
     dataframe : el dataframe que queremos modificar
     
     Returns:
-    La funcion devuelve el DF modificado"""
+    La funcion no tiene return, devuelve el DF modificado por asignacion directa"""
 
     print(f"Estos son los datos negativos en {columna}")
     print(dataframe[dataframe[columna] < 0][columna])
@@ -307,6 +306,8 @@ def col_fecha (dataframe, col1, col2, col_nueva):
     col_nueva : nombre que le vamos a dar a la nueva columna
     
     Returns:
-    La funcion devuelve el DF modificado"""
+    La funcion no tiene return, devuelve el DF modificado por asignacion directa"""
 
     dataframe[col_nueva] = dataframe.apply(lambda dato: str(dato[col1]) + "/" + str(dato[col2]), axis=1)
+
+# %%

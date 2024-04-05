@@ -3,6 +3,8 @@ import pandas as pd
 from src import support_transformation as sp
 import seaborn as sns
 import matplotlib.pyplot as plt
+import warnings
+warnings.filterwarnings("ignore")
 
 #%%
 df_flight_activity = pd.read_csv("files/Customer Flight Activity.csv")
@@ -21,7 +23,7 @@ sp.graficos_hisp(df_loyalty_history, ["Gender", "Education", "Marital Status"])
 
 # %%
 sp.cabeceras(lista_dfs)
-df_flight_activity_notdup = sp.eliminar_duplicados(df_flight_activity)
+sp.eliminar_duplicados(df_flight_activity)
 sp.eliminar_negativos(df_loyalty_history, "salary")
 
 # %%
