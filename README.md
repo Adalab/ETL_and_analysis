@@ -9,12 +9,12 @@ La prueba se ha realizado en VSCode en archivos ".ipynb" y ".py".
 
 Las librerías utilizadas han sido:
 
-Pandas
-Numpy
-Seaborn
-Matplotlib
-IPython.display
-mysql.connector
+- Pandas
+- Numpy
+- Seaborn
+- Matplotlib
+- IPython.display
+- mysql.connector
 
 ## 📂 Organizacion
 
