@@ -18,7 +18,7 @@ Las librerias utilizadas han sido:
 
 - Evaluación final mod_3: pdf con los ejercicios solicitados en la evalucion
 
-- main: archivo .py, en el que se exploran y modifican los datos (Fase 1)
+- main: archivo .py, en el que se exploran y modifican los datos (Fase 1), además incluye la creacion de la bbdd y la creacion e insercion de datos en las tablas en mysql
 
 - visualizaciones: archivo .ipynb donde se realiza el analisis y las visualizaciones solicitadas (Fase 2)
 
@@ -28,8 +28,8 @@ Las librerias utilizadas han sido:
 
 - Carpeta src: contiene varios archivos de soporte .py :
     - support_transformacion: contiene todas las funciones para la exploracion y transformacion de los datos
-    - support_conexion: contiene todas las funciones para la creacion de la bbdd y de la creacion e insercion de datos en las tablas en mysql. Además hay dos funciones de transformacion de int64 y float64 a int y float
-    - query_creacion: contiene las consultas necesarias para la creacion de la bbdd y de la creacion e insercion de datos en las tablas en mysql
+    - support_conexion: contiene todas las funciones para la creacion de la bbdd y la creacion e insercion de datos de las tablas en mysql. Además hay dos      funciones de transformacion de int64 y float64 a int y float para que la insercion de los datos se complete correctamente
+    - query_creacion: contiene las consultas necesarias para la creacion de la bbdd y la creacion e insercion de datos en las tablas en mysql
 
 ## 📆 Fechas
 
