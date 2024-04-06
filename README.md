@@ -5,7 +5,8 @@ Hola! en este repositorio se encuentra la evaluacion final resuelta por Ana Sair
 
 ## 💻 Herramientas utilizadas
 
-La prueba se ha realizado en VSCode en archivos ".ipynb" y ".py"
+La prueba se ha realizado en VSCode en archivos ".ipynb" y ".py". 
+
 Las librerias utilizadas han sido:
 - Pandas
 - Numpy
@@ -16,20 +17,20 @@ Las librerias utilizadas han sido:
 
 ## 📂 Organizacion
 
-- Evaluación final mod_3: pdf con los ejercicios solicitados en la evalucion
+- Evaluación final mod_3: pdf con los ejercicios solicitados en la evalucion.
 
-- main: archivo .py, en el que se exploran y modifican los datos (Fase 1), además incluye la creacion de la bbdd y la creacion e insercion de datos en las tablas en mysql
+- main: archivo .py, en el que se exploran y modifican los datos (Fase 1), además incluye la creacion de la bbdd y la creacion e insercion de datos en las tablas en mysql.
 
-- visualizaciones: archivo .ipynb donde se realiza el analisis y las visualizaciones solicitadas (Fase 2)
+- visualizaciones: archivo .ipynb donde se realiza el analisis y las visualizaciones solicitadas (Fase 2).
 
-- A_B_Testing: archivo .ipynb donde se realizan las distintas pruebas necesarias para el A/B Testing (Fase 3)
+- A_B_Testing: archivo .ipynb donde se realizan las distintas pruebas necesarias para el A/B Testing (Fase 3).
 
-- Carpeta files: contiene los csv originales y el csv final (despues de la transformacion)
+- Carpeta files: contiene los csv originales y el csv final (despues de la transformacion) y el archivo (.sql) para la creacion de la bbdd y las tablas.
 
 - Carpeta src: contiene varios archivos de soporte .py :
-    - support_transformacion: contiene todas las funciones para la exploracion y transformacion de los datos
-    - support_conexion: contiene todas las funciones para la creacion de la bbdd y la creacion e insercion de datos de las tablas en mysql. Además hay dos      funciones de transformacion de int64 y float64 a int y float para que la insercion de los datos se complete correctamente
-    - query_creacion: contiene las consultas necesarias para la creacion de la bbdd y la creacion e insercion de datos en las tablas en mysql
+    - support_transformacion: contiene todas las funciones para la exploracion y transformacion de los datos.
+    - support_conexion: contiene todas las funciones para la creacion de la bbdd y la creacion e insercion de datos de las tablas en mysql. Además hay dos funciones de transformacion de int64 y float64 a int y float para que la insercion de los datos se complete correctamente.
+    - query_creacion: contiene las consultas necesarias para la creacion de la bbdd y la creacion e insercion de datos en las tablas en mysql.
 
 ## 📆 Fechas
 
