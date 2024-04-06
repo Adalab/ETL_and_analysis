@@ -25,7 +25,7 @@ Las librerias utilizadas han sido:
 
 - A_B_Testing: archivo .ipynb donde se realizan las distintas pruebas necesarias para el A/B Testing (Fase 3).
 
-- Carpeta files: contiene los csv originales y el csv final (despues de la transformacion) y el archivo (.sql) para la creacion de la bbdd y las tablas.
+- Carpeta files: contiene los csv originales, el csv final (despues de la transformacion) y el archivo (.sql) para la creacion de la bbdd y las tablas.
 
 - Carpeta src: contiene varios archivos de soporte .py :
     - support_transformacion: contiene todas las funciones para la exploracion y transformacion de los datos.
